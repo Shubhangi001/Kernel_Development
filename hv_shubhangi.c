@@ -3,13 +3,12 @@
 #include<linux/kernel.h> //pr_info
 #include<linux/init.h> //module_init and module_exit
 #include<linux/module.h>  //THIS_MODULE 
-#include "mshv.h"         //MSHV_IOCTL
 #define BUFFER_SIZE 256
 #include<linux/ioctl.h>    
 #include<linux/err.h>     
 #include<linux/uaccess.h>     //copy_to_user and copy_from_user
-#define MSHV_SHUBHANGI_WRITE _IOW(MSHV_IOCTL,0x31,char*)
-#define MSHV_SHUBHANGI_READ _IOR(MSHV_IOCTL,0x32,char*)
+#define SHUBHANGI_WRITE _IOW(0xB8,0x31,char*) //major and minor number which doesn't conflict with existing devices
+#define SHUBHANGI_READ _IOR(0xB8,0x32,char*)
 static int etx_misc_open(struct inode *inode, struct file *file){
 	pr_info("misc device open\n");
 	return 0;
@@ -64,14 +63,14 @@ static long int my_ioctl(struct file *filp, unsigned cmd, unsigned long arg){
 	char kernel_read_buffer[BUFFER_SIZE];
 	char kernel_buffer[BUFFER_SIZE]="Hi user ~ from kernel!";
 	switch(cmd){
-		case MSHV_SHUBHANGI_WRITE:
+		case SHUBHANGI_WRITE:
 			
 			if(copy_from_user(kernel_read_buffer,(char*)arg,sizeof(kernel_read_buffer)) ){
 					pr_err("data write err!\n");
 			}
 			pr_info("ioctl write value=%s\n",kernel_read_buffer);
 			break;
-		case MSHV_SHUBHANGI_READ:
+		case SHUBHANGI_READ:
 			if(copy_to_user((char*)arg,kernel_buffer,sizeof(kernel_buffer)) ){
 				pr_err("data read err~!\n");
 			}

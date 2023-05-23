@@ -98,7 +98,7 @@ struct miscdevice etx_misc_device = {
 };
 static int __init misc_init(void){
 	int err;
-	err = misc_register(&etx_misc_device);
+	err = misc_register(&etx_misc_device); //The structure (etx_misc_device here) passed is linked into the kernel and may not be destroyed until it has been unregistered.
 	if(err){
 		pr_err("misc_register failed\n");
 		return err;

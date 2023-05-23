@@ -7,8 +7,8 @@
 #include<sys/stat.h> // File status header file
 #include<unistd.h> // close
 #define BUFFER_SIZE 256
-#define MSHV_SHUBHANGI_WRITE _IOW(0xB8,0x31,char*)
-#define MSHV_SHUBHANGI_READ _IOR(0xB8,0x32,char*)
+#define SHUBHANGI_WRITE _IOW(0xB8,0x31,char*)
+#define SHUBHANGI_READ _IOR(0xB8,0x32,char*)
 int main(){
         printf("Opening driver\n");
         int fd = open("/dev/shubhangi_misc_driver",O_RDWR); // Open device driver file with read and write permissions
@@ -33,9 +33,9 @@ int main(){
         printf("Read: %s\n", read_buffer);
         printf("Ioctl write to kernel space/driver\n");
         //int32_t value=5;
-        ioctl(fd,MSHV_SHUBHANGI_WRITE,write_buffer);
+        ioctl(fd,SHUBHANGI_WRITE,write_buffer);
         printf("ioctl reading from kernel space\n");
-        ioctl(fd,MSHV_SHUBHANGI_READ,read_buffer);
+        ioctl(fd,SHUBHANGI_READ,read_buffer);
         printf("ioctl read %s from kernel space\n",read_buffer);
         printf("Closing Driver\n");
         close(fd);

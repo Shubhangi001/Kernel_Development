@@ -1,8 +1,8 @@
 #include<linux/miscdevice.h> //misc_register and misc_deregister
 #include<linux/fs.h>  //struct file definition
 #include<linux/kernel.h> //pr_info
-#include<linux/init.h> //module_init and module_exit
-#include<linux/module.h>  //THIS_MODULE 
+#include<linux/init.h> 
+#include<linux/module.h>  //THIS_MODULE , module_init and module_exit
 #define BUFFER_SIZE 256
 #include<linux/ioctl.h>    
 #include<linux/err.h>     

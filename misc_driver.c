@@ -7,8 +7,13 @@
 #include<linux/ioctl.h>    
 #include<linux/err.h>     
 #include<linux/uaccess.h>     //copy_to_user and copy_from_user
+
+#define CREATE_TRACE_POINTS
+#include <trace/events/shubhangi.h> // Include tracepoint header
+
 #define SHUBHANGI_WRITE _IOW(0xB8,0x31,char*) //major and minor number which doesn't conflict with existing devices
 #define SHUBHANGI_READ _IOR(0xB8,0x32,char*)
+
 static int etx_misc_open(struct inode *inode, struct file *file){
 	pr_info("misc device open\n");
 	return 0;
@@ -75,6 +80,8 @@ static long int my_ioctl(struct file *filp, unsigned cmd, unsigned long arg){
 				pr_err("data read err~!\n");
 			}
 			pr_info("ioctl read done!\n");
+			// trigger the tracepoint
+			trace_shubhangi_tracepoint(kernel_buffer);
 			break;
 		default:
 			pr_info("default\n");

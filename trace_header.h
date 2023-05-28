@@ -1,6 +1,6 @@
 
-#if !defined(_TRACE_MSHV_SHUBHANGI_H) || defined(TRACE_HEADER_MULTI_READ)
-#define _TRACE_MSHV_SHUBHANGI_H
+#if !defined(_TRACE_SHUBHANGI_H) || defined(TRACE_HEADER_MULTI_READ)
+#define _TRACE_SHUBHANGI_H
 
 #include <linux/tracepoint.h>
 
@@ -16,7 +16,7 @@ TRACE_EVENT(shubhangi_tracepoint,
 	TP_fast_assign(
 		__entry->msg = message;
 	),
-	TP_printk("tracepoint: %s", __entry->msg)
+	TP_printk("%s", __entry->msg)
 );
 
 #endif /* _TRACE_SUBSYS_H */

@@ -9,6 +9,12 @@ This GitHub repository contains codes that I wrote during my internship at Micro
 - **test.c**: A sample user space test program to interact with the kernel module.
 - **trace_header.h**: Header file defining tracepoints used in the module.
 
+## Usage
+
+1. Build and install the kernel source tree before proceeding to anything.
+2. Compile the first_kernel_module using the provided Makefile by giving the command `make`
+
+
 ## References
 
 - https://lwn.net/Kernel/LDD3/

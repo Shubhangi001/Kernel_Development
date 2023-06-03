@@ -1,5 +1,5 @@
 ifneq ($(KERNELRELEASE),)
-	obj-m := hello.o
+	obj-m := first_kernel_module.o
 else
 	KERNELDIR ?= ~/linux
 	PWD := $(shell pwd)
